@@ -67,10 +67,17 @@
             <BrandName>$(SharedFrameworkBrandName)</BrandName>
             <InstallerName>$(SharedFrameworkInstallerFile)</InstallerName>
         </WixOutputs2>
+
+        <!-- .NET Native MSI authoring -->
+        <WixOutputs3 Include="$(WixObjRoot)netnative">
+            <InstallerName>$(NetNativeInstallerFile)</InstallerName>
+            <PackageSourceDir>$(PackagesOutDir)</PackageSourceDir>
+            <UniversalWindowsPlatformPackageVersion>$(UWPCoreRuntimeSdkFullVersion)</UniversalWindowsPlatformPackageVersion>
+        </WixOutputs3>
       </ItemGroup>
 
       <RemoveDir Directories="$(WixObjRoot)" />
-      <MakeDir Directories="$(WixObjRoot);@(WixOutputs);@(WixOutputs2)" />
+      <MakeDir Directories="$(WixObjRoot);@(WixOutputs);@(WixOutputs2);@(WixOutputs3)" />
 
       <GenerateGuidFromName Name="$(SharedFrameworkInstallerFile)">
         <Output TaskParameter="GeneratedGui" PropertyName="SharedFxUpgradeCode" />
@@ -85,6 +92,9 @@
       <Exec Command="powershell -NoProfile -NoLogo $(WindowsScriptRoot)%(WixOutputs.Filename)\generatemsi.ps1 %(WixOutputs.InputDir) %(WixOutputs.InstallerName) $(WixToolsDir) '%(WixOutputs.BrandName)' $(CommonParams) %(WixOutputs.Identity) %(WixOutputs.UpgradeCode)" />
       <!-- shared framework -->
       <Exec Command="powershell -NoProfile -NoLogo $(WindowsScriptRoot)%(WixOutputs2.Filename)\generatemsi.ps1 %(WixOutputs2.InputDir) %(WixOutputs2.InstallerName) $(WixToolsDir) '%(WixOutputs2.BrandName)' $(SharedFxParams) %(WixOutputs2.Identity)" />
+
+      <!-- .NET Native -->
+      <Exec Command="powershell -NoProfile -NoLogo $(WindowsScriptRoot)%(WixOutputs3.Filename)\generatemsi.ps1 %(WixOutputs3.InstallerName) $(WixToolsDir) %(WixOutputs3.PackageSourceDir) %(WixOutputs3.Identity) %(WixOutputs3.UniversalWindowsPlatformPackageVersion) $(DotnetToolCommand)" />
   </Target>
 
   <Target Name="GenerateBundles"

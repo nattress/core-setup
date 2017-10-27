@@ -370,6 +370,7 @@
     <SharedHostInstallerFile>$(SharedHostInstallerStart)$(ProductMoniker)$(InstallerExtension)</SharedHostInstallerFile>
     <HostFxrInstallerFile>$(HostFxrInstallerStart)$(HostResolverVersionMoniker)$(InstallerExtension)</HostFxrInstallerFile>
     <SharedFrameworkInstallerFile>$(SharedFrameworkInstallerStart)$(ProductMoniker)$(InstallerExtension)</SharedFrameworkInstallerFile>
+    <NetNativeInstallerFile>$(PackagesOutDir)netfx_NETCoreUWP$(InstallerExtension)</NetNativeInstallerFile>
   </PropertyGroup>
   
   <PropertyGroup>

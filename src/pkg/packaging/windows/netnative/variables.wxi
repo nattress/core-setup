@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define MajorVersion     =   "15" ?>
+  <?define MinorVersion     =   "4" ?>
+  <?define BuildVersion     =   "27001"?>
+  <?define ProductName      =   "Microsoft UniversalWindowsPlatform SDK" ?>
+  <?define ProductLanguage  =   "1033" ?>
+  <?define UpgradeCode      =   "6D3B5A50-E3F3-4871-9618-ED1EFD6D897D" ?>
+  <?define Manufacturer     =   "Microsoft" ?>
+</Include>
